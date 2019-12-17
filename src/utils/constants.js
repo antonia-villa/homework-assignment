@@ -18,6 +18,25 @@ export const DATA_ATTRIBUTES = {
 export const TOTAL = "Total";
 
 /**
- * Local Storage Key
+ * Local Storage Keys
  */
-export const CLIENT_DATA = "clientData";
+
+export const LOCAL_STORAGE_KEYS = {
+  DATA: "data",
+  LOGGED_IN: "loggedIn",
+  CLIENT: "client"
+};
+
+/**
+ * Administrator Login
+ */
+export const ADMIN = "Administrator";
+
+/**
+ *  Filterable Modes of Shipment
+ */
+export const MODES = {
+  AIR: "Air",
+  RAIL: "Rail",
+  SEA: "Sea"
+};

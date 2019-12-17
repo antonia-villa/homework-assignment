@@ -5,9 +5,9 @@ export const THEME = {
     DARK: "#1c313a"
   },
   SECONDARY: {
-    PRIMARY: "#01579b",
-    LIGHT: "#4f83CC",
-    DARK: "#002f6c"
+    PRIMARY: "#b71c1c",
+    LIGHT: "#f05545",
+    DARK: "#7f0000"
   },
   HIGHLIGHT: {
     PRIMARY: "#263238"

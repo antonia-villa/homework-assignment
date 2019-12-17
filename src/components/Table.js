@@ -1,45 +1,92 @@
 import React, { Component } from "react";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import { DATA_ATTRIBUTES } from "../utils/constants";
-import "../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 import { THEME } from "../utils/theme";
-import styled from "@emotion/styled";
+import { makeStyles } from "@material-ui/core/styles";
+// Material-ui Icons
+import FlightIcon from "@material-ui/icons/Flight";
+import TrainIcon from "@material-ui/icons/Train";
+import DirectionsBoatIcon from "@material-ui/icons/DirectionsBoat";
+import { DATA_ATTRIBUTES, MODES } from "../utils/constants";
 
-const ErrorMessage = styled("p")({
-  fontSize: "24px",
-  color: THEME.MAIN.DARK
-});
+// Conditionally Render Mode Symbol
+class ModeIcon extends React.Component {
+  render() {
+    let icon;
+    if (this.props.active === MODES.RAIL) {
+      icon = <TrainIcon />;
+    } else if (this.props.active === MODES.AIR) {
+      icon = <FlightIcon />;
+    } else if (this.props.active === MODES.SEA) {
+      icon = <DirectionsBoatIcon />;
+    }
+    return <div>{icon}</div>;
+  }
+}
+// Mode Icon Formatter
+function modeIconFormatter(cell, row) {
+  return <ModeIcon active={cell} />;
+}
 
-const ErrorWrapper = styled("div")({
-  marginTop: "20px",
-  textAlign: "center"
-});
+const useStyles = () =>
+  makeStyles({
+    errorMessage: { fontSize: "24px", color: THEME.MAIN.DARK },
+    errorWrapper: {
+      marginTop: "20px",
+      textAlign: "center"
+    }
+  });
 
 class Table extends Component {
   render() {
-    const selectRow = {
-      mode: "checkbox"
-    };
-    const cellEdit = {
-      mode: "click",
-      blurToSave: true
-    };
+    const classes = useStyles();
 
-    const data = this.props.data;
+    // Custom Table Options
+    const options = {
+      searchPanel: this.renderCustomSearchPanel
+    };
 
     let table;
+
+    const assignHeaderFormat = header => {
+      if (header === DATA_ATTRIBUTES.MODE) {
+        return (
+          <TableHeaderColumn
+            dataField={header}
+            dataSort={true}
+            key={header}
+            thStyle={{ textAlign: "center" }}
+            tdStyle={{
+              textAlign: "center",
+              border: `${THEME.LIGHTEST} 1px solid`
+            }}
+            dataFormat={modeIconFormatter}
+          >
+            {header}
+          </TableHeaderColumn>
+        );
+      } else {
+        return (
+          <TableHeaderColumn
+            dataField={header}
+            dataSort={true}
+            key={header}
+            thStyle={{ textAlign: "left" }}
+            tdStyle={{
+              textAlign: "left",
+              border: `${THEME.LIGHTEST} 1px solid`
+            }}
+          >
+            {header}
+          </TableHeaderColumn>
+        );
+      }
+    };
+
     // Only Render the table when data exists
-    if (data.length) {
-      const headers = Object.keys(data[0]).map(header => (
-        <TableHeaderColumn
-          dataField={header}
-          dataSort={true}
-          thStyle={{ textAlign: "center" }}
-          tdStyle={{ textAlign: "center" }}
-        >
-          {header}
-        </TableHeaderColumn>
-      ));
+    if (this.props.data.length) {
+      const headers = Object.keys(this.props.data[0]).map(header =>
+        assignHeaderFormat(header)
+      );
 
       table = (
         <div>
@@ -47,17 +94,15 @@ class Table extends Component {
             keyField="Shipment ID"
             bordered={true}
             tableStyle={{
-              background: THEME.MAIN.PRIMARY,
+              background: THEME.LIGHT,
               color: THEME.MAIN.LIGHTEST
             }}
             headerStyle={{ background: THEME.MAIN.DARK, color: "white" }}
-            bodyStyle={{ textAlign: "center" }}
+            bodyStyle={{ textAlign: "left" }}
             ref="table"
-            data={data}
-            selectRow={selectRow}
-            cellEdit={cellEdit}
-            deleteRow
-            exportCSV
+            data={this.props.data}
+            options={options}
+            search
           >
             {headers}
           </BootstrapTable>
@@ -66,10 +111,14 @@ class Table extends Component {
     } else {
       // Alter the user how to render
       table = (
-        <ErrorWrapper>
-          <ErrorMessage>No Data exists for the current selection.</ErrorMessage>
-          <ErrorMessage>Select a shipment mode to add data.</ErrorMessage>
-        </ErrorWrapper>
+        <div className={classes.errorWrapper}>
+          <p className={classes.errorMessage}>
+            No Data exists for the current selection.
+          </p>
+          <p className={classes.errorMessage}>
+            Select a shipment mode to add data.
+          </p>
+        </div>
       );
     }
 

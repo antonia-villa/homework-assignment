@@ -1,27 +1,30 @@
 import React, { Component } from "react";
 import Login from "../components/Login";
 import Dashboard from "./Dashboard";
-import { CLIENT_DATA } from "../utils/constants";
 
 class App extends Component {
   state = {
-    loggedIn: true, // user is not logged in
+    loggedIn: true,
     client: "Broko"
   };
 
   render() {
     const handleSubmit = (client, password) => event => {
       event.preventDefault();
-      // Temporary auth to filter client view
+
+      // Hack for auth to filter client specific data
       if (password !== null) {
-        this.setState({ client, loggedIn: true });
+        this.setState({
+          client,
+          loggedIn: true
+        });
       }
     };
 
     // Log user out
     // Clear local storage
     const handleLogout = () => event => {
-      localStorage.removeItem(CLIENT_DATA);
+      localStorage.clear();
       this.setState({
         loggedIn: !this.state.loggedIn,
         client: ""
@@ -29,7 +32,11 @@ class App extends Component {
     };
 
     return this.state.loggedIn ? (
-      <Dashboard client={this.state.client} handleLogout={handleLogout} />
+      <Dashboard
+        loggedIn={this.state.loggedIn}
+        client={this.state.client}
+        handleLogout={handleLogout}
+      />
     ) : (
       <Login handleSubmit={handleSubmit} />
     );

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DATA_ATTRIBUTES, TOTAL } from "../utils/constants";
+import { DATA_ATTRIBUTES, MODES } from "../utils/constants";
 import { THEME } from "../utils/theme";
 // Material-ui Elements
 import Card from "@material-ui/core/Card";
@@ -13,7 +13,6 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import FlightIcon from "@material-ui/icons/Flight";
 import TrainIcon from "@material-ui/icons/Train";
 import DirectionsBoatIcon from "@material-ui/icons/DirectionsBoat";
-import PublicIcon from "@material-ui/icons/Public";
 
 const useStyles = makeStyles({
   cardWrapper: {
@@ -45,15 +44,19 @@ const useStyles = makeStyles({
     color: THEME.MAIN.DARK
   },
   cardContent: {
-    textAlign: "center"
+    display: "flex",
+    flexDirection: "row",
+    textAlign: "center",
+    justifyContent: "center"
   },
   header: {
-    fontSize: "18px",
-    marginBottom: "4px"
+    fontSize: "20px",
+    marginRight: "10px"
   },
   icon: {
     marginBotton: "4px",
-    fontSize: "28px"
+    fontSize: "34px",
+    marginRight: "10px"
   },
   body: {
     fontSize: "20px"
@@ -62,12 +65,6 @@ const useStyles = makeStyles({
     height: 140
   }
 });
-
-const MODES = {
-  AIR: "Air",
-  RAIL: "Rail",
-  SEA: "Sea"
-};
 
 const Statistics = props => {
   const classes = useStyles();
@@ -90,16 +87,6 @@ const Statistics = props => {
     }
     return icon;
   };
-
-  let totalCard = (
-    <Card key={TOTAL} className={classes.totalCard} raised={true}>
-      <CardContent className={classes.cardContent}>
-        <Typography className={classes.header}>Total:</Typography>
-        <PublicIcon className={classes.icon} />
-        <Typography className={classes.body}>{props.data.length}</Typography>
-      </CardContent>
-    </Card>
-  );
 
   let modeCards = Object.keys(modes).map(mode => (
     <Card
@@ -125,11 +112,8 @@ const Statistics = props => {
 
   return (
     <div className={classes.cardWrapper}>
-      {totalCard}
-      <div>
-        <div className={classes.title}>Filter By:</div>
-        {modeCards}
-      </div>
+      <div className={classes.title}>Filter By:</div>
+      {modeCards}
     </div>
   );
 };

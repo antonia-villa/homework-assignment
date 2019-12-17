@@ -17,6 +17,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 // NOTE: Enables temporary auth as proof of concept
 import { SAMPLE_DATA } from "../static/data/sample-data";
 import { THEME } from "../utils/theme";
+import { ADMIN, DATA_ATTRIBUTES } from "../utils/constants";
 
 const useStyles = makeStyles(theme => ({
   formWrapper: {
@@ -24,14 +25,17 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     fontSize: "24px",
-    backgroundColor: THEME.LIGHT,
+    backgroundColor: THEME.MAIN.DARK,
+    color: THEME.LIGHTEST,
     marginLeft: "25%",
-    marginRight: "25%"
+    marginRight: "25%",
+    borderRadius: "8px"
   },
   formContent: {
     padding: "24px",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    color: THEME.LIGHTEST
   },
   formControl: {
     marginBottom: "20px",
@@ -41,7 +45,8 @@ const useStyles = makeStyles(theme => ({
   inputLabel: {
     fontSize: "20px",
     marginBottom: "20px",
-    marginTop: "-10px"
+    marginTop: "-10px",
+    color: THEME.LIGHTEST
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
@@ -54,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   menuItem: {
-    fontSize: "14px"
+    fontSize: "18px"
   },
   withoutLabel: {
     marginTop: theme.spacing(3)
@@ -64,19 +69,30 @@ const useStyles = makeStyles(theme => ({
   },
   selectList: {
     marginTop: "10px",
-    fontSize: "20px"
+    fontSize: "20px",
+    color: THEME.LIGHTEST
+  },
+  passwordIcon: {
+    color: THEME.LIGHTEST
   },
   submitButton: {
-    backgroundColor: THEME.MAIN.DARK,
+    backgroundColor: THEME.MAIN.LIGHT,
     color: THEME.LIGHT,
     fontSize: "20px",
     marginLeft: "25%",
-    marginRight: "25%"
+    marginRight: "25%",
+    "&:hover": {
+      backgroundColor: THEME.SECONDARY.LIGHT
+    }
   }
 }));
 
+const CLIENT = "client";
+const PASSWORD = "password";
+
 const Login = props => {
   const classes = useStyles();
+
   const [values, setValues] = useState({
     client: "",
     password: "",
@@ -96,23 +112,29 @@ const Login = props => {
   };
 
   // This is a hacked implementation of auth
-  // Given the client specific data, only relevant data for each individual client should be displayed upon log in
+  // Only relevant data for each individual client should be displayed upon log in
   const CLIENT_LIST = [
-    ...new Set(SAMPLE_DATA.map(record => record["Client Name"]))
+    ...new Set(SAMPLE_DATA.map(record => record[DATA_ATTRIBUTES.CLIENT_NAME]))
   ];
+  // Admin login is reserved for the forwarder
+  CLIENT_LIST.unshift(ADMIN);
 
   return (
     <div className={classes.formWrapper}>
       <div className={classes.formContent}>
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} variant="standard">
           <InputLabel className={classes.inputLabel}>Select Company</InputLabel>
           <Select
             className={classes.selectList}
             value={values.client}
-            onChange={handleChange("client")}
+            onChange={handleChange(CLIENT)}
           >
             {CLIENT_LIST.map(client => (
-              <MenuItem className={classes.menuItem} value={client}>
+              <MenuItem
+                key={client}
+                className={classes.menuItem}
+                value={client}
+              >
                 {client}
               </MenuItem>
             ))}
@@ -121,15 +143,16 @@ const Login = props => {
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>Password</InputLabel>
           <Input
-            type={values.showPassword ? "text" : "password"}
+            type={values.showPassword ? "text" : PASSWORD}
             value={values.password}
             className={classes.inputLabel}
-            onChange={handleChange("password")}
+            onChange={handleChange(PASSWORD)}
             endAdornment={
-              <InputAdornment position="end">
+              <InputAdornment position="end" className={classes.passwordIcon}>
                 <IconButton
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  className={classes.passwordIcon}
                 >
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
