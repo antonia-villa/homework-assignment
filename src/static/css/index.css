@@ -1,0 +1,16 @@
+html {
+  background-color: #e1e2e1;
+}
+body {
+  background-color: #e1e2e1;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: "14px";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
