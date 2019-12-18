@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-
 // Material UI Components
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Input from "@material-ui/core/Input";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import {
+  makeStyles,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Button,
+  IconButton,
+  Input,
+  InputAdornment
+} from "@material-ui/core";
 // Material UI Icons
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -123,7 +124,7 @@ const Login = props => {
     <div className={classes.formWrapper}>
       <div className={classes.formContent}>
         <FormControl className={classes.formControl} variant="standard">
-          <InputLabel className={classes.inputLabel}>Select Company</InputLabel>
+          <InputLabel className={classes.inputLabel}>Select Client</InputLabel>
           <Select
             className={classes.selectList}
             value={values.client}

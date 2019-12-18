@@ -91,12 +91,13 @@ const Modes = props => {
     return icon;
   };
 
-  let modeCards = Object.keys(modes).map(mode => (
-    <div className={classes.filterWrapper}>
+  let modeCards = Object.keys(modes).map((mode, index) => (
+    <div className={classes.filterWrapper} key={index}>
       <Checkbox
         size="small"
         color="default"
         checked={modes[mode]}
+        key={index}
         style={{
           paddingLeft: 0,
           height: "26px",
@@ -105,6 +106,7 @@ const Modes = props => {
         }}
         icon={
           <CheckBoxOutlineBlankIcon
+            key={index}
             style={{
               fontSize: 26,
               paddingRight: 0
@@ -113,6 +115,7 @@ const Modes = props => {
         }
         checkedIcon={
           <CheckBoxIcon
+            key={index}
             style={{
               fontSize: 26,
               paddingRight: 0,
@@ -125,7 +128,9 @@ const Modes = props => {
       />
       <div className={modes[mode] ? classes.activeCard : classes.inactiveCard}>
         <div className={classes.cardContent}>
-          <Typography className={classes.header}>{mode}</Typography>
+          <Typography key={index} className={classes.header}>
+            {mode}
+          </Typography>
           {getCardIcon(mode)}
         </div>
       </div>

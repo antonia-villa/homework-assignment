@@ -1,8 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Checkbox, Typography } from "@material-ui/core";
 import { THEME } from "../../utils/theme";
-
+// Material UI Components
+import { Checkbox, Typography, makeStyles } from "@material-ui/core";
+// Material UI Icons
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
@@ -44,12 +44,13 @@ const useStyles = makeStyles({
 const Statuses = props => {
   const classes = useStyles();
   const { statuses, handleFilter } = props;
-  let statusButtons = Object.keys(statuses).map(status => (
-    <div className={classes.filterWrapper}>
+  let statusButtons = Object.keys(statuses).map((status, index) => (
+    <div key={status} className={classes.filterWrapper}>
       <Checkbox
         size="small"
         color="default"
         checked={statuses[status]}
+        key={index}
         style={{
           paddingLeft: 0,
           height: "26px",
@@ -59,6 +60,7 @@ const Statuses = props => {
         }}
         icon={
           <RadioButtonUncheckedIcon
+            key={status}
             style={{
               fontSize: 26,
               paddingRight: 0
@@ -67,6 +69,7 @@ const Statuses = props => {
         }
         checkedIcon={
           <RadioButtonCheckedIcon
+            key={status}
             style={{
               fontSize: 26,
               paddingRight: 0
@@ -75,7 +78,9 @@ const Statuses = props => {
         }
         onChange={() => handleFilter(DATA_ATTRIBUTES.STATUS, status)}
       />
-      <Typography className={classes.header}>{status}</Typography>
+      <Typography key={status} className={classes.header}>
+        {status}
+      </Typography>
     </div>
   ));
 
