@@ -8,13 +8,14 @@ const useStyles = makeStyles({
   cardWrapper: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "left",
     padding: "10px",
     backgroundColor: THEME.LIGHTEST,
     margin: "10px",
     marginBottom: "20px",
     borderRadius: "4px",
-    border: `${THEME.MAIN.DARK} solid 1px`
+    border: `${THEME.MAIN.DARK} solid 1px`,
+    maxWidth: "400px"
   },
   title: {
     minWidth: 100,

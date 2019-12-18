@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard";
 class App extends Component {
   state = {
     loggedIn: true,
-    client: "Broko"
+    client: null
   };
 
   render() {
@@ -31,7 +31,7 @@ class App extends Component {
       });
     };
 
-    return this.state.loggedIn ? (
+    return this.state.loggedIn && this.state.client ? (
       <Dashboard
         loggedIn={this.state.loggedIn}
         client={this.state.client}

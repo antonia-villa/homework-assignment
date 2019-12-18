@@ -14,7 +14,6 @@ const useStyles = makeStyles({
     flexDirection: "row",
     marginRight: "10px",
     alignItems: "center",
-    justifyContent: "space-between",
     minWidth: "180px",
     justifyContent: "flex-start",
     marginBottom: "4px"
@@ -45,8 +44,6 @@ const useStyles = makeStyles({
 const Statuses = props => {
   const classes = useStyles();
   const { statuses, handleFilter } = props;
-
-  console.log("statuses", statuses);
   let statusButtons = Object.keys(statuses).map(status => (
     <div className={classes.filterWrapper}>
       <Checkbox

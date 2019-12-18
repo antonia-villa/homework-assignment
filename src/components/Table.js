@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import {
-  BootstrapTable,
-  TableHeaderColumn,
-  SearchField
-} from "react-bootstrap-table";
+import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { THEME } from "../utils/theme";
 import { makeStyles } from "@material-ui/core/styles";
 // Material-ui Icons
@@ -50,17 +46,7 @@ const useStyles = () =>
 
 class Table extends Component {
   render() {
-    const createCustomSearchField = props => {
-      return (
-        <SearchField className={classes.searchField} placeholder="Search..." />
-      );
-    };
     const classes = useStyles();
-
-    // Custom Table Options
-    const options = {
-      searchPanel: createCustomSearchField
-    };
 
     let table;
 
@@ -119,8 +105,8 @@ class Table extends Component {
             bodyStyle={{ textAlign: "left" }}
             ref="table"
             data={this.props.data}
-            options={options}
-            search
+            search={true}
+            multiColumnSearch={true}
           >
             {headers}
           </BootstrapTable>
