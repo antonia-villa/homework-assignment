@@ -125,7 +125,6 @@ class Dashboard extends Component {
 
   render() {
     const classes = useStyles();
-    console.log(this.state);
 
     return (
       <div>
