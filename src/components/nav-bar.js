@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = props => {
+const NavBar = props => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = event => {
@@ -78,4 +78,4 @@ const Header = props => {
   );
 };
 
-export default Header;
+export default NavBar;

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import {
+  BootstrapTable,
+  TableHeaderColumn,
+  SearchField
+} from "react-bootstrap-table";
 import { THEME } from "../utils/theme";
 import { makeStyles } from "@material-ui/core/styles";
 // Material-ui Icons
@@ -33,16 +37,29 @@ const useStyles = () =>
     errorWrapper: {
       marginTop: "20px",
       textAlign: "center"
+    },
+    tableWrapper: {
+      marginTop: "24px",
+      margin: "10px",
+      border: `${THEME.MAIN.DARK} 1px solid`
+    },
+    searchField: {
+      marginRight: "10px"
     }
   });
 
 class Table extends Component {
   render() {
+    const createCustomSearchField = props => {
+      return (
+        <SearchField className={classes.searchField} placeholder="Search..." />
+      );
+    };
     const classes = useStyles();
 
     // Custom Table Options
     const options = {
-      searchPanel: this.renderCustomSearchPanel
+      searchPanel: createCustomSearchField
     };
 
     let table;
@@ -95,7 +112,8 @@ class Table extends Component {
             bordered={true}
             tableStyle={{
               background: THEME.LIGHT,
-              color: THEME.MAIN.LIGHTEST
+              color: THEME.MAIN.LIGHTEST,
+              margin: "10px"
             }}
             headerStyle={{ background: THEME.MAIN.DARK, color: "white" }}
             bodyStyle={{ textAlign: "left" }}
@@ -122,7 +140,7 @@ class Table extends Component {
       );
     }
 
-    return <div>{table}</div>;
+    return <div className={classes.tableWrapper}>{table}</div>;
   }
 }
 
