@@ -18,6 +18,16 @@ A view one approach to organize and present data to freight forwarders.
 - React-bootstrap-table
 - Javascript
 
+### User Stories
+The target user for this applications is a frieght forwarder who is burdened by the disorganization of data related to their customers shipments. This app provides a view into all shipments for the freight forwarder and provisioned views for all clients. 
+
+A user wants to be able to:
+- view all shipments in an aggregate view
+- filter shipments by key data attribtues (mode of transportation and shipment status)
+- filter by free text
+- maintain connectivity off line
+
+
 ---
 
 ### Steps to Setting Up
