@@ -33,6 +33,8 @@ const useStyles = makeStyles(theme => ({
   },
   menuItem: {
     padding: "8px",
+    paddingLeft: "20px",
+    paddingRight: "20px",
     fontSize: "18px"
   },
   title: {

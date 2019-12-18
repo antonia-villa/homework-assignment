@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   inactiveCard: {
     margin: 0,
     padding: 10,
-    color: THEME.MAIN.LIGHT,
+    color: THEME.MAIN.PRIMARY,
     minWidth: "40px",
     minHeight: "40px",
     paddingRight: 0

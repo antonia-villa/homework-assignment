@@ -29,6 +29,7 @@ If you'd like to set this project up on your own local server:
 - You can now open [http://localhost:3000](http://localhost:3000) to view it in the browser or whichever localhost you have set
 - NOTE: There is an authentication step. The only requirement is a non null password for all client log ins.
 - To view all clients in an aggregate view, log in as the Administator.
+  ![](login.png)
 
 ---
 

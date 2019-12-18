@@ -77,8 +77,8 @@ const useStyles = makeStyles(theme => ({
     color: THEME.LIGHTEST
   },
   submitButton: {
-    backgroundColor: THEME.MAIN.LIGHT,
-    color: THEME.LIGHT,
+    backgroundColor: THEME.LIGHT,
+    color: THEME.MAIN.DARK,
     fontSize: "20px",
     marginLeft: "25%",
     marginRight: "25%",

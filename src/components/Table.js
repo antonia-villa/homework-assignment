@@ -29,7 +29,7 @@ function modeIconFormatter(cell, row) {
 
 const useStyles = () =>
   makeStyles({
-    errorMessage: { fontSize: "24px", color: THEME.MAIN.DARK },
+    errorMessage: { fontSize: "28px", color: THEME.MAIN.DARK },
     errorWrapper: {
       marginTop: "20px",
       textAlign: "center"
