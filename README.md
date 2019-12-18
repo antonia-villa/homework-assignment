@@ -4,21 +4,23 @@ A view one approach to organize and present data to freight forwarders.
 
 
 
-## Requirements
+### Requirements
 * Create a way to display shipment information to frieght forwarders
 * Easy to use and easy to adopt to UI
  * Maintain functionality if connectivity is lost
 
 
-## Technologies Used
+### Technologies Used
 * React
  * Key modules:
   * Material-UI
   * React-bootstrap-table
 * Javascript
 
+__________
 
-## Steps to Setting Up
+
+### Steps to Setting Up
 If you'd like to set this project up on your own local server: 
 * Fork and clone this repository
 * Run `npm install` to install node_modules
@@ -26,8 +28,9 @@ If you'd like to set this project up on your own local server:
 * NOTE: There is an authentication step. The only requirement is a non null password for all client log ins.
 * To view all clients in an aggregate view, log in as the Administator.
 
+_________
 
-## Key Considerations
+### Key Considerations
 * Authentication of Users
  * Solution: Temporary authentication implemented through the use of local storage. 
  * Reason for implementation: Frieght forwarding information can contain crucial information for individual clients. As a frieght forwarder, it is imperative to provide clients with information only relevant to their business. Additionally, authentication can be used to restrict write privledges to the data. 
@@ -39,7 +42,17 @@ If you'd like to set this project up on your own local server:
  * Searching Data
  * Reason for implentation: Free text search is a quick way to find a specific record if you know the address or the potential location you are looking to target.
  
- ## Next Steps:
+ 
+ ______
+ ### Known Issues:
+ 
+ * Dependency issue: `react-bootstrap-table.min.js:32 Uncaught TypeError: Cannot read property 'Component' of undefined`
+ A
+ Known Bug Cited [here](https://github.com/AllenFang/react-bootstrap-table/issues/944) and [here](https://github.com/AllenFang/react-bootstrap-table/issues/1042). There does not to appear to be a resolution to date.
+ ______
+ 
+ 
+ ### Next Steps:
  * Filtering: Filtering should be available for all data attributes giving the user full control over the data set in view.
  * CSV Download: As early adopters try to adjust to the software, there will always be demand for raw data. A CSV Download will enable users to access the data if they find the software limiting or the barrier to entry to great. Additionally, the CSV download can act a source to relay information to outside sources.
  
