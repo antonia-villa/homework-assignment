@@ -130,12 +130,8 @@ const Login = props => {
             value={values.client}
             onChange={handleChange(CLIENT)}
           >
-            {CLIENT_LIST.map(client => (
-              <MenuItem
-                key={client}
-                className={classes.menuItem}
-                value={client}
-              >
+            {CLIENT_LIST.map((client, index) => (
+              <MenuItem key={index} className={classes.menuItem} value={client}>
                 {client}
               </MenuItem>
             ))}

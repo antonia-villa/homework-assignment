@@ -5,7 +5,7 @@ import { SAMPLE_DATA } from "../static/data/sample-data";
 import { makeStyles } from "@material-ui/core/styles";
 import { DATA_ATTRIBUTES, ADMIN, LOCAL_STORAGE_KEYS } from "../utils/constants";
 import { THEME } from "../utils/theme";
-import { uniq, keys, pickBy } from "lodash";
+import { uniq } from "lodash";
 import Filters from "../components/Filters";
 
 const useStyles = () =>
@@ -87,21 +87,45 @@ class Dashboard extends Component {
     let rawData = Object.values(
       JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.DATA))
     );
-    // Update Filters
-    let updateFilters = Object.assign({}, this.state[filterName]);
-    updateFilters[filterOption] = !updateFilters[filterOption];
+    // Update filters based on selected filterName
+    let updatedFilters = Object.assign({}, this.state[filterName]);
+    updatedFilters[filterOption] = !updatedFilters[filterOption];
     // Update displayData
-    let updatedData = rawData.filter(dataItem =>
-      keys(pickBy(updateFilters)).includes(dataItem[filterName])
+    let validFilters = Object.keys(updatedFilters).filter(
+      item => updatedFilters[item]
     );
+    let updatedData = rawData.reduce((data, dataItem) => {
+      if (validFilters.includes(dataItem[filterName])) {
+        data.push(dataItem);
+      }
+      return data;
+    }, []);
+
+    // Update Data from persisted filters
+    let persistedFilterName = [
+      DATA_ATTRIBUTES.MODE,
+      DATA_ATTRIBUTES.STATUS
+    ].filter(item => item !== filterName);
+
+    let persistedFilters = Object.keys(this.state[persistedFilterName]).filter(
+      item => this.state[persistedFilterName][item]
+    );
+    let returnData = updatedData.reduce((data, dataItem) => {
+      if (persistedFilters.includes(dataItem[persistedFilterName])) {
+        data.push(dataItem);
+      }
+      return data;
+    }, []);
+
     this.setState({
-      [filterName]: updateFilters,
-      displayData: updatedData
+      [filterName]: updatedFilters,
+      displayData: returnData
     });
   }
 
   render() {
     const classes = useStyles();
+    console.log(this.state);
 
     return (
       <div>

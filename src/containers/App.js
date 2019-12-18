@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 
 class App extends Component {
   state = {
-    loggedIn: true,
+    loggedIn: false,
     client: null
   };
 
