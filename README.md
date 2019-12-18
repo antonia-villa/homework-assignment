@@ -1,69 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Freight Forwarding Dashboard
 
-## Available Scripts
+A view one approach to organize and present data to freight forwarders.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requirements
+* Create a way to display shipment information to frieght forwarders
+* Easy to use and easy to adopt to UI
+ * Maintain functionality if connectivity is lost
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+## Technologies Used
+* React
+ * Key modules:
+  * Material-UI
+  * React-bootstrap-table
+* Javascript
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Steps to Setting Up
+If you'd like to set this project up on your own local server: 
+* Fork and clone this repository
+* Run `npm install` to install node_modules
+* You can now open [http://localhost:3000](http://localhost:3000) to view it in the browser or whichever localhost you have set
+* NOTE: There is an authentication step. The only requirement is a non null password for all client log ins.
+* To view all clients in an aggregate view, log in as the Administator.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Key Considerations
+* Authentication of Users
+ * Solution: Temporary authentication implemented through the use of local storage. 
+ * Reason for implementation: Frieght forwarding information can contain crucial information for individual clients. As a frieght forwarder, it is imperative to provide clients with information only relevant to their business. Additionally, authentication can be used to restrict write privledges to the data. 
+ * Additional thoughts: This is a temporary hack to emphasize the importance of data privacy within the industry and to be able to implement read/write access to client data.
+ 
+ * Filtering Data
+ * Reason for implentation: Aggregate views of data are useful but only as useful as the consumer makes them. The ability to filter by key data attributes enables the user to quickly narrow down the data set to find what they are looking for.
+ 
+ * Searching Data
+ * Reason for implentation: Free text search is a quick way to find a specific record if you know the address or the potential location you are looking to target.
+ 
+ ## Next Steps:
+ * Filtering: Filtering should be available for all data attributes giving the user full control over the data set in view.
+ * CSV Download: As early adopters try to adjust to the software, there will always be demand for raw data. A CSV Download will enable users to access the data if they find the software limiting or the barrier to entry to great. Additionally, the CSV download can act a source to relay information to outside sources.
+ 
+ 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# logixboard
